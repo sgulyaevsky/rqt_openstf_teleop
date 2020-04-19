@@ -21,8 +21,3 @@ install(PROGRAMS
   scripts/rqt_openstf_teleop
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-
-#install(DIRECTORY
-#  resource
-#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-#)
