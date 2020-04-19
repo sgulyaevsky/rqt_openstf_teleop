@@ -16,19 +16,7 @@ class TeleopPlugin(Plugin):
     def __init__(self, context):
         super(TeleopPlugin, self).__init__(context)
         # Give QObjects reasonable names
-        self.setObjectName('MyPlugin')
-
-        # Process standalone plugin command-line arguments
-        from argparse import ArgumentParser
-        parser = ArgumentParser()
-        # Add argument(s) to the parser.
-        parser.add_argument("-q", "--quiet", action="store_true",
-                      dest="quiet",
-                      help="Put plugin in silent mode")
-        args, unknowns = parser.parse_known_args(context.argv())
-        if not args.quiet:
-            print 'arguments: ', args
-            print 'unknowns: ', unknowns
+        self.setObjectName('TeleopPlugin')
 
         # Create Widget
         self._widget = TeleopWidget()
@@ -87,7 +75,7 @@ class TeleopPlugin(Plugin):
     def restore_settings(self, plugin_settings, instance_settings):
         # TODO restore intrinsic configuration, usually using:
         # v = instance_settings.value(k)
-        self._create_subscriber(str(instance_settings.value("topic_name", "/camera/image_raw")))
+        self._create_subscriber(str(instance_settings.value("topic_name", "/openstf_screen")))
 
         if self._pub is None:
             self._pub = rospy.Publisher('openstf_control_messages', String, queue_size=10)
